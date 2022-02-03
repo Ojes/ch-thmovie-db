@@ -1,8 +1,8 @@
 ## Installation
 
-1. `git clone https://github.com/Ojes/movie-theater-challenge.git`
+1. `git clone https://github.com/Ojes/thmdb-challenge.git`
 
-2. `cd movie-theater-challenge`
+2. `cd thmdb-challenge`
 
 3. `npm install`
 
