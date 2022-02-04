@@ -5,6 +5,7 @@ const Button = styled.button`
   border: none;
   border-radius: 3px;
   color: ${({ primary }) => (primary ? 'white' : 'palevioletred')};
+  cursor: pointer;
   font-size: 1em;
   margin: 1em;
   padding: 0.25em 1em;

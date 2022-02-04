@@ -2,8 +2,8 @@ import { useAtomValue } from 'jotai/utils';
 import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
 import { movieSelectedAtom } from '../../atoms/MovieDetailAtoms';
-import Movie from '../home/components/Movie';
 import Icon from '../../components/Icon';
+import Poster from '../../components/Poster';
 
 const ContentWrapper = styled.div`
   background: ${({ background }) => (background ? `url(${process.env.REACT_APP_THEMOVIEDB_POSTER_URL}${background})` : '#dbcfaf')};
@@ -30,19 +30,23 @@ const MovieContentWrapper = styled.div`
   display: flex;
   margin: 0 auto;
   max-width: 960px;
+  padding-bottom: 80px;
 `;
+
 const Title = styled.h1`
   font-size: 2.2rem;
   margin: 0;
   padding: 0;
 `;
 
-const PosterWrapper = styled.article`
+const PosterWrapper = styled.div`
   flex: 1 1 33%;
+  height: 400px;
 `;
 
-const InfoWrapper = styled.article`
+const InfoWrapper = styled.div`
   flex: 1 1 66%;
+  max-width: 66%;
   overflow: hidden;
   padding: 10px 16px;
 `;
@@ -74,7 +78,7 @@ const MovieDetailPage = () => {
           <LinkWrapper to="/">
             <IconWrapper ico="arrow-left">Go Back</IconWrapper>
           </LinkWrapper>
-          <Movie {...movie} fullHeight={true} disable={true} />
+          <Poster {...movie} fullHeight={true} />
         </PosterWrapper>
         <InfoWrapper>
           <Title>{movie.title}</Title>

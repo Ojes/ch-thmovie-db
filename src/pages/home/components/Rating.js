@@ -5,6 +5,7 @@ import Icon from '../../../components/Icon';
 const StarButton = styled(Button)`
   background: transparent;
   color: ${({ selected }) => (selected ? '#fece00' : '#757575')};
+  cursor: pointer;
   margin: 0;
   padding: 3px;
   width: fit-content;

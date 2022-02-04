@@ -1,38 +1,18 @@
 import { useUpdateAtom } from 'jotai/utils';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import noPosterAvailable from '../../../assets/noPosterAvailable.png';
 import { movieSelectedAtom } from '../../../atoms/MovieDetailAtoms';
+import Poster from '../../../components/Poster';
 
-const ImgWraper = styled.div`
-  height: ${({ fullHeight }) => (!!fullHeight ? '100%' : '220px')};
-  pointer-events: ${({ disable }) => (disable ? 'none' : 'auto')};
-  position: relative;
-  width: 100%;
-`;
-
-const ImgElement = styled.img`
-  height: 100%;
-  object-fit: cover;
-  width: 100%;
-`;
-
-const Movie = ({ className, fullHeight, to, ...info }) => {
-  const { title, poster_path } = info;
+const Movie = ({ to, size, className, ...info }) => {
   const navigate = useNavigate();
   const selectMovie = useUpdateAtom(movieSelectedAtom);
-  const imageUrl = poster_path ? `${process.env.REACT_APP_THEMOVIEDB_POSTER_URL}${poster_path}` : noPosterAvailable;
 
   const handleGoToDetails = () => {
     selectMovie(info);
     navigate(to);
   };
 
-  return (
-    <ImgWraper tabIndex={0} className={className} fullHeight={fullHeight} onClick={handleGoToDetails}>
-      <ImgElement alt={`${title} Poster`} src={imageUrl} />
-    </ImgWraper>
-  );
+  return <Poster tabIndex={0} className={className} {...info} onClick={handleGoToDetails}></Poster>;
 };
 
 export default Movie;
