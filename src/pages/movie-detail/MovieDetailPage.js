@@ -1,9 +1,10 @@
-import { useAtomValue } from 'jotai/utils';
 import styled from 'styled-components';
-import { Link, useNavigate } from 'react-router-dom';
-import { movieSelectedAtom } from '../../atoms/MovieDetailAtoms';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Icon from '../../components/Icon';
 import Poster from '../../components/Poster';
+import { getMovieById } from '../../atoms/MovieResultsAtom';
+import { useEffect } from 'react';
+import { useAtom } from 'jotai';
 
 const ContentWrapper = styled.div`
   background: ${({ background }) => (background ? `url(${process.env.REACT_APP_THEMOVIEDB_POSTER_URL}${background})` : '#dbcfaf')};
@@ -63,7 +64,14 @@ const LinkWrapper = styled(Link)`
 
 const MovieDetailPage = () => {
   let navigate = useNavigate();
-  const movie = useAtomValue(movieSelectedAtom);
+  const params = useParams();
+  const [movie, updateMovie] = useAtom(getMovieById);
+
+  useEffect(() => {
+    updateMovie(params.id);
+
+    //eslint-disable-next-line
+  }, [params.id]);
 
   if (!movie) {
     navigate('/');

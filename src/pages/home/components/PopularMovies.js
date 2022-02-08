@@ -1,9 +1,11 @@
 import { useAtom } from 'jotai';
 import styled from 'styled-components';
 import Icon from '../../../components/Icon';
-import { discoveryMoviesAtom } from '../../../atoms/DiscoveryAtoms';
 import Movie from './Movie';
 import MovieBox from './MoviesBox';
+import { requestControllerAtom, requestParamsAtom, resultOfMoviesAtom } from '../../../atoms/MovieResultsAtom';
+import { useEffect } from 'react';
+import { useUpdateAtom } from 'jotai/utils';
 
 const SectionWrapper = styled.article`
   display: block;
@@ -25,8 +27,16 @@ const MoviesWrapper = styled.article`
 `;
 
 const PopularMovies = () => {
-  const [{ results = [] }] = useAtom(discoveryMoviesAtom);
+  const setNewQuery = useUpdateAtom(requestControllerAtom);
+  const setQueryParams = useUpdateAtom(requestParamsAtom);
+  const [{ results = [] }] = useAtom(resultOfMoviesAtom);
   const [mostPopular, ...rest] = results.slice(0, 9).sort((r, l) => l.vote_average - r.vote_average);
+
+  useEffect(() => {
+    setNewQuery('discover/movie');
+    setQueryParams('');
+    //eslint-disable-next-line
+  }, []);
 
   return (
     <SectionWrapper>

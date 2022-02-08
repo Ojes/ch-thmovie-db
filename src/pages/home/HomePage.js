@@ -3,12 +3,12 @@ import { useAtomValue } from 'jotai/utils';
 import SearchResultMovies from './components/SearchResultMovies';
 import PopularMovies from './components/PopularMovies';
 import SearchBox from './components/SearchBox';
-import { searchTextAtom } from '../../atoms/SearchAtoms';
 import Header from './components/Header';
 import ContainerWrapper from '../../components/Container';
+import { requestParamsAtom } from '../../atoms/MovieResultsAtom';
 
 const HomePage = () => {
-  const searchText = useAtomValue(searchTextAtom);
+  const searchText = useAtomValue(requestParamsAtom);
   return (
     <>
       <Header>

@@ -20,7 +20,7 @@ const MovieBox = ({ collection, itemPerRow = 5 }) => (
   <ItemsWrapper>
     {collection &&
       collection.map((item) => (
-        <ItemWrapper key={item.id} {...item} to={`/movie-details/${item?.id}`} size={100 / itemPerRow}>
+        <ItemWrapper key={item.id} {...item} size={100 / itemPerRow}>
           <ItemWrapper />
         </ItemWrapper>
       ))}

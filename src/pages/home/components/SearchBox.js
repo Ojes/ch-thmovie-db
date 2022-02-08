@@ -1,7 +1,7 @@
 import { useUpdateAtom } from 'jotai/utils';
 import { useState } from 'react';
 import styled from 'styled-components';
-import { searchTextAtom } from '../../../atoms/SearchAtoms';
+import { requestParamsAtom } from '../../../atoms/MovieResultsAtom';
 
 const Search = styled.input`
   border: none;
@@ -10,7 +10,7 @@ const Search = styled.input`
 `;
 
 const SearchBox = () => {
-  const setNewQuery = useUpdateAtom(searchTextAtom);
+  const setNewQuery = useUpdateAtom(requestParamsAtom);
   const [inputValue, setInput] = useState('');
 
   const handleSubmit = (event) => {
