@@ -69,7 +69,6 @@ const MovieDetailPage = () => {
 
   useEffect(() => {
     updateMovie(params.id);
-
     //eslint-disable-next-line
   }, [params.id]);
 

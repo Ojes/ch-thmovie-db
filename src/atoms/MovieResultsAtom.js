@@ -2,12 +2,12 @@ import { atom } from 'jotai';
 import { atomWithQuery } from 'jotai/query';
 import { getRequest } from '../helpers/http';
 
-export const requestControllerAtom = atom('discover/movie');
 export const requestParamsAtom = atom('');
 
 export const resultOfMoviesAtom = atomWithQuery((get) => ({
-  queryKey: [get(requestControllerAtom), get(requestParamsAtom)],
-  queryFn: async ({ queryKey: [endpoint, query] }) => {
+  queryKey: ['movie-collection', get(requestParamsAtom)],
+  queryFn: async ({ queryKey: [query] }) => {
+    const endpoint = !!query.length ? 'discover/movie' : 'search/movie';
     const res = await getRequest(endpoint, { query });
     return res.json();
   },

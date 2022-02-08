@@ -5,8 +5,7 @@ import Icon from '../../../components/Icon';
 import { ratingAtom } from '../../../atoms/RatingAtoms';
 import MovieBox from './MoviesBox';
 import Rating from './Rating';
-import { useUpdateAtom } from 'jotai/utils';
-import { requestControllerAtom, resultOfMoviesAtom } from '../../../atoms/MovieResultsAtom';
+import { resultOfMoviesAtom } from '../../../atoms/MovieResultsAtom';
 
 const HeaderWrapper = styled.article`
   display: flex;
@@ -21,15 +20,9 @@ const InfoWrapper = styled.p`
 `;
 
 const SearchResultMovies = () => {
-  const setNewQuery = useUpdateAtom(requestControllerAtom);
   const [{ results }] = useAtom(resultOfMoviesAtom);
   const [filterRatingValue, setFilterRating] = useAtom(ratingAtom);
   const [resultFiltered, filterMovieByRating] = useState(results);
-
-  useEffect(() => {
-    setNewQuery('search/movie');
-    //eslint-disable-next-line
-  }, []);
 
   useEffect(() => {
     const data =
