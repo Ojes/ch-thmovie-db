@@ -1,8 +1,8 @@
 ## Installation
 
-1. `git clone https://github.com/Ojes/thmdb-challenge.git`
+1. `git clone https://github.com/Ojes/ch-thmovie-db.git`
 
-2. `cd thmdb-challenge`
+2. `cd ch-thmovie-db`
 
 3. `npm install`
 
